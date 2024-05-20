@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Table,
   TableBody,
@@ -21,15 +22,15 @@ type Column = {
 };
 
 type RowProps = {
-  row: any;
+  row: Record<string, any>;
   rowId?: string;
   columns: Column[];
   rowIndex: number;
-  rowClass?: (row: any) => string;
+  rowClass?: (row: Record<string, any>) => string;
 };
 
-const renderTable = (column: Column, row: any) => {
-  let value = row[column.field];
+const renderTable = (column: Column, row: Record<string, any>) => {
+  const value = row[column.field];
   return value;
 };
 
@@ -44,7 +45,12 @@ const TableColumns = ({ columns }: { columns: Column[] }) =>
     </TableCell>
   ));
 
-const renderCell = (j: number, row: any, c: Column, rowIndex: number) => {
+const renderCell = (
+  j: number,
+  row: Record<string, any>,
+  c: Column,
+  rowIndex: number
+) => {
   if (c.render) {
     const val = c.render(row?.[c.field] ?? '', rowIndex, row, c, j);
     return val;
@@ -55,27 +61,25 @@ const renderCell = (j: number, row: any, c: Column, rowIndex: number) => {
 
 const Row = ({ row, rowId, columns, rowIndex, rowClass }: RowProps) => {
   return (
-    <>
-      <TableRow
-        key={rowId ? row[rowId] : rowIndex}
-        className={rowClass ? rowClass(row) : ''}
-      >
-        {columns.map((c, j) => (
-          <TableCell component='td' key={j}>
-            {renderCell(j, row, c, rowIndex)}
-          </TableCell>
-        ))}
-      </TableRow>
-    </>
+    <TableRow
+      key={rowId ? row[rowId] : rowIndex}
+      className={rowClass ? rowClass(row) : ''}
+    >
+      {columns.map((c, j) => (
+        <TableCell component='td' key={j}>
+          {renderCell(j, row, c, rowIndex)}
+        </TableCell>
+      ))}
+    </TableRow>
   );
 };
 
 type CustomTableProps = {
   columns: Column[];
-  rows: any[];
+  rows: Record<string, any>[];
   isCompact?: boolean;
   rowId?: string;
-  rowClass?: (row: any) => string;
+  rowClass?: (row: Record<string, any>) => string;
 };
 
 const CustomTable = ({
@@ -100,7 +104,7 @@ const CustomTable = ({
         <TableBody>
           {rows.map((row, i) => (
             <Row
-              key={i}
+              key={rowId ? row[rowId] : i}
               row={row}
               rowId={rowId}
               columns={columns}

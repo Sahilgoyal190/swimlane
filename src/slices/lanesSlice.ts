@@ -25,7 +25,7 @@ export const fetchLanesAction = createAsyncThunk<
 
 export const addLaneAction = createAsyncThunk<Lane, Lane, { state: RootState }>(
   'lane/add',
-  async (lane, _thunkAPI) => {
+  async lane => {
     const data = await addLane(lane);
     return data;
   }
@@ -85,7 +85,8 @@ const moveBlockHandler = (
 
   if (!sourceLane || !destinationLane) return [];
 
-  const { history: _history, ...blockWithoutHistory } = originalBlock;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { history, ...blockWithoutHistory } = originalBlock;
 
   const newBlock = {
     ...updateBlock,

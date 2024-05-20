@@ -1,4 +1,5 @@
 import { Block, Lane } from '../../types';
+import { FilterState } from './slices/filterSlice';
 
 export const isNotFollowingLaneRules = (block: Block, lane: Lane): boolean => {
   if (!lane) return true;
@@ -8,7 +9,7 @@ export const isNotFollowingLaneRules = (block: Block, lane: Lane): boolean => {
   });
 };
 
-export const isAllowedByFilters = (block: any, filters: any) => {
+export const isAllowedByFilters = (block: Block, filters: FilterState) => {
   if (
     filters.priority?.length > 0 &&
     !filters.priority.includes(block.priority?.id)

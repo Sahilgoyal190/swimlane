@@ -44,6 +44,7 @@ const SwimLane = () => {
         })
       );
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { blocks, ...destinationLaneRestProps } = destinationLane;
       const updatedBlock = { ...block, status: destinationLaneRestProps };
       dispatch(

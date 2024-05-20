@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@mui/material';
+import { Divider, Paper, Typography } from '@mui/material';
 import {
   Droppable,
   Draggable,
@@ -29,7 +29,10 @@ const Lane = ({ lane, index }: LaneProps) => {
         backgroundColor: SWIMLANE_COLORS[index]
       }}
     >
-      <Typography variant='h6'>{lane.name}</Typography>
+      <Typography variant='h6' textAlign='center'>
+        {lane.name}
+      </Typography>
+      <Divider />
       <Droppable droppableId={lane.id}>
         {(provided: DroppableProvided) => (
           <div

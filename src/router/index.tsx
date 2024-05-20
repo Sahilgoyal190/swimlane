@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const Board = lazy(() => import('@/pages/board'));
 const Admin = lazy(() => import('@/pages/admin'));
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: (

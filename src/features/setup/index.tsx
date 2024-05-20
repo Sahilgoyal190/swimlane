@@ -11,7 +11,7 @@ const Setup = () => {
 
   useEffect(() => {
     dispatch(fetchLanesAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

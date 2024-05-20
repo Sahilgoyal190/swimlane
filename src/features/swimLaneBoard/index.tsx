@@ -13,7 +13,7 @@ const SwimLaneBoard = () => {
 
   useEffect(() => {
     dispatch(fetchLanesAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

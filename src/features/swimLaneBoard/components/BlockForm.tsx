@@ -8,14 +8,13 @@ import { isNotFollowingLaneRules } from '@/features/swimLaneBoard/validator';
 
 import {
   addBlockToLaneAction,
-  updateBlock,
   updateBlockAction
 } from '../../../slices/lanesSlice';
 import History from './History';
 import { useAppDispatch } from '@/store/dispatch';
 
 type BlockProps = {
-  blockData: Block | {};
+  blockData: Block | unknown;
   handleClose?: () => void;
   isEditFlow?: boolean;
 };
